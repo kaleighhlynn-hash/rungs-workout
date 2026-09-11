@@ -792,7 +792,7 @@
 <header class="top">
   <p class="eyebrow">Home Gym · Fat Loss &amp; Tone</p>
   <h1 class="title">Rungs</h1>
-  <p class="subtitle">Your 7-day plan. No two weekdays repeat.</p>
+  <p class="subtitle" id="weekSubtitle">Your 7-day plan. No two weekdays repeat.</p>
   <div class="ladder" id="ladder"></div>
 </header>
 
@@ -888,7 +888,27 @@
     "Kneeling Alternating Side Reach":"Kneel upright with fists at your sides, bend sideways reaching one fist toward the floor, alternating sides.",
     "Kneeling Overhead Side Reach":"Kneel upright with hands together overhead in a triangle shape, bend sideways reaching down toward the floor, alternating sides.",
     "Half-Kneeling Side Bend":"From a half-kneeling lunge (one knee down, other foot out at 45°), hand on hip, other hand behind your head, bend sideways down toward your front knee, then switch sides.",
-    "Stair Sprints":"Climb a flight (or half-flight) of stairs at a brisk pace, then walk back down slowly to recover before repeating."
+    "Stair Sprints":"Climb a flight (or half-flight) of stairs at a brisk pace, then walk back down slowly to recover before repeating.",
+    "Split Squat":"Feet in a stationary lunge stance, lower straight down until both knees bend to about 90°, then push back up without stepping.",
+    "Curtsy Lunge":"Step one leg diagonally behind the other like a curtsy, bend both knees, then push back to standing.",
+    "Lateral Lunge":"Step one leg out to the side and bend that knee while keeping the other leg straight, then push back to standing.",
+    "Single-Leg Deadlift":"Standing on one leg, hinge forward at the hips while your other leg extends straight back for balance, then return to standing.",
+    "Standard Push-Up":"Hands under shoulders, body in a straight line from head to heels, lower your chest to the floor and press back up.",
+    "Arnold Press":"Start with dumbbells at shoulder height, palms facing you. Press overhead while rotating your palms to face forward, then reverse on the way down.",
+    "Kneeling Single-Arm Row":"Kneel with one hand and knee on a bench or sturdy surface, pull a dumbbell up toward your hip with the other arm, squeezing your shoulder blade.",
+    "Hammer Curl":"Elbows tucked to your sides, palms facing each other, curl the dumbbells straight up toward your shoulders, then lower slowly.",
+    "Front Raise":"With a slight bend in your elbows, raise the dumbbells straight out in front of you to shoulder height, then lower slowly.",
+    "Side Plank":"Lie on your side, prop up on one forearm with your body in a straight line, hips lifted off the floor, and hold.",
+    "High Knees":"Jog in place while driving your knees up toward your chest as high and quickly as you comfortably can.",
+    "Butt Kicks":"Jog in place while kicking your heels up to try to tap your glutes with each step.",
+    "Pilates Ball Wall Squat":"Press the pilates ball between your lower back and a wall, feet shoulder-width. Squat down until thighs are near parallel, then push back up.",
+    "Pilates Ball Squeeze Bridge":"Lie on your back, knees bent, feet flat, ball squeezed between your knees. Drive your hips up to a straight line while keeping the squeeze, then lower.",
+    "Pilates Ball Heel Squeeze Bridge":"Lie on your back, knees bent, ball squeezed between your heels. Lift your hips into a bridge while keeping the squeeze, then lower with control.",
+    "Pilates Ball Push-Up":"Place one or both hands on top of the ball in a plank position. Lower your chest toward the ball and press back up — the wobble adds extra core work.",
+    "Pilates Ball Squeeze Press":"Lying on your back (or a bench), hold the ball between both palms at chest height. Press your hands together into the ball as you press it up, then lower with control.",
+    "Pilates Ball Knee Squeeze Crunch":"Lie on your back, knees bent, ball squeezed between your knees. Curl your shoulder blades up off the floor while keeping the squeeze, then lower.",
+    "Pilates Ball Plank":"Rest your forearms or hands on top of the ball, body in a straight line from head to heels, and hold steady without letting the ball roll away.",
+    "Pilates Ball Russian Twist":"Sitting with knees bent and feet lifted slightly, hold the ball with both hands and rotate side to side, tapping it near the floor on each side."
   };
 
   const WEEK = [
@@ -1063,20 +1083,28 @@
   // Substitution pools — grouped by movement pattern. Any exercise in a pool
   // can swap for any other in that pool.
   const SUB_POOLS = [
-    ["Bodyweight Squat","Goblet Squat","Bodyweight Sumo Squat","Step-Up","Reverse Lunge"],
-    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge"],
-    ["Easy Incline Push-Up","Dumbbell Chest Press","Shoulder Press","Dumbbell Thruster"],
-    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row"],
-    ["Biceps Curl","Lateral Raise"],
-    ["Slider Knee Tuck","Dead Bug","Plank","Crunch","Bird Dog","Superman Hold"],
-    ["Reverse Lunge","Reverse Lunge to Knee Drive","Step-Up"],
-    ["Jumping Jacks or Marches","Mountain Climbers","Inchworm"]
+    ["Bodyweight Squat","Goblet Squat","Bodyweight Sumo Squat","Step-Up","Reverse Lunge","Split Squat","Pilates Ball Wall Squat"],
+    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge","Single-Leg Deadlift","Pilates Ball Squeeze Bridge","Pilates Ball Heel Squeeze Bridge"],
+    ["Easy Incline Push-Up","Dumbbell Chest Press","Shoulder Press","Dumbbell Thruster","Standard Push-Up","Arnold Press","Pilates Ball Push-Up","Pilates Ball Squeeze Press"],
+    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row","Kneeling Single-Arm Row"],
+    ["Biceps Curl","Lateral Raise","Hammer Curl","Front Raise"],
+    ["Slider Knee Tuck","Dead Bug","Crunch","Bird Dog","Pilates Ball Knee Squeeze Crunch","Pilates Ball Russian Twist"],
+    ["Plank","Superman Hold","Pilates Ball Plank","Side Plank"],
+    ["Reverse Lunge","Reverse Lunge to Knee Drive","Step-Up","Curtsy Lunge","Lateral Lunge"],
+    ["Jumping Jacks or Marches","Mountain Climbers","Inchworm","High Knees","Butt Kicks"]
   ];
   function getSubstitutes(name){
     for(const pool of SUB_POOLS){
       if(pool.includes(name)) return pool.filter(n=>n!==name);
     }
     return [];
+  }
+  function poolIndexOf(name){
+    for(const pool of SUB_POOLS){
+      const idx = pool.indexOf(name);
+      if(idx !== -1) return {pool, idx};
+    }
+    return null;
   }
 
   const PRINCIPLES = [
@@ -1144,6 +1172,26 @@
     return dateKey(d);
   });
 
+  // 4-week A/B/C/D cycle: exercise rotation + progressive reps, anchored to a
+  // fixed Monday so it stays consistent no matter when the app is opened.
+  const CYCLE_LENGTH = 4;
+  const WEEK_LETTERS = ["A","B","C","D"];
+  const CYCLE_ANCHOR = new Date('2026-01-05T00:00:00'); // a known Monday
+  function weeksSinceAnchor(mondayDateObj){
+    const diffMs = mondayDateObj - CYCLE_ANCHOR;
+    return Math.floor(diffMs / (7*24*3600*1000));
+  }
+  const rawWeekOffset = weeksSinceAnchor(monday);
+  const currentWeekIdx = ((rawWeekOffset % CYCLE_LENGTH) + CYCLE_LENGTH) % CYCLE_LENGTH; // 0..3, always positive
+  const currentWeekLetter = WEEK_LETTERS[currentWeekIdx];
+  const WEEK_STYLES = [
+    { name:"Volume",           repsDelta:0,  weightBump:2.5, note:"Volume week — moderate reps, standard rest (60–90 sec) between sets." },
+    { name:"Strength",         repsDelta:-2, weightBump:5,   note:"Strength week — go heavier and drop reps a bit if you need to; rest longer between sets (90–120 sec)." },
+    { name:"Circuit",          repsDelta:0,  weightBump:2.5, note:"Circuit week — minimal rest between moves; rest only after a full round through everything." },
+    { name:"Superset Burnout", repsDelta:2,  weightBump:0,   note:"Burnout week — pair each move with the next one, no rest between the pair, then rest before the next pair." }
+  ];
+  const currentWeekStyle = WEEK_STYLES[currentWeekIdx];
+
   let store = loadStore();
   let overrides = loadOverrides();
   let customExercises = loadCustomExercises();
@@ -1195,9 +1243,40 @@
   function isDayComplete(dateK, dayIdx){ return dayCompletion(dateK, dayIdx) >= 1; }
 
   function overrideKey(dayIdx, section, i){ return dayIdx+"|"+section+"|"+i; }
+  function weeklyRotatedName(section, original){
+    // Only rotate Main Work — warm-ups/cool-downs stay stable week to week.
+    if(section !== 'main') return original;
+    const info = poolIndexOf(original);
+    if(!info) return original;
+    const newIdx = (info.idx + currentWeekIdx) % info.pool.length;
+    return info.pool[newIdx];
+  }
   function effectiveName(dayIdx, section, i, original){
     const v = overrides[overrideKey(dayIdx, section, i)];
-    return v || original;
+    if(v) return v; // a manual swap always wins over the automatic weekly rotation
+    return weeklyRotatedName(section, original);
+  }
+  function progressedSets(exName, setsStr, section, hasTimer){
+    // Family lifts (ones with a swap pool) follow the week's training style —
+    // e.g. fewer reps on a Strength week, more on a Burnout week. Exercises
+    // with no pool (Stair Sprints, the kneeling core moves) just climb
+    // steadily each week of the cycle instead.
+    if(section !== 'main' || hasTimer) return setsStr;
+    const inPool = !!poolIndexOf(exName);
+    const delta = inPool ? currentWeekStyle.repsDelta : currentWeekIdx;
+    if(delta === 0) return setsStr;
+    let m = setsStr.match(/(\d+)\s*[–-]\s*(\d+)/);
+    if(m){
+      const lo = Math.max(4, parseInt(m[1],10) + delta);
+      const hi = Math.max(lo+1, parseInt(m[2],10) + delta);
+      return setsStr.replace(m[0], lo+'–'+hi);
+    }
+    m = setsStr.match(/×\s*(\d+)(?!\s*(rounds|sec))/);
+    if(m){
+      const val = Math.max(4, parseInt(m[1],10) + delta);
+      return setsStr.replace(m[0], '× '+val);
+    }
+    return setsStr;
   }
   function setOverride(dayIdx, section, i, name, original){
     const k = overrideKey(dayIdx, section, i);
@@ -1217,6 +1296,14 @@
       }
     }
     return null;
+  }
+  function combinedMainNote(baseNote){
+    return (baseNote ? baseNote + ' ' : '') + currentWeekStyle.note;
+  }
+  function suggestedWeight(last){
+    if(!last || last.weight == null) return null;
+    if(currentWeekStyle.weightBump <= 0) return null;
+    return Math.round((last.weight + currentWeekStyle.weightBump) * 2) / 2; // nearest 0.5
   }
 
   // ---------------- TIMER ----------------
@@ -1496,7 +1583,9 @@
     list.forEach((ex, i)=>{
       const infoKey = dayIdx+"|"+sectionKey+"|"+i;
       const displayName = effectiveName(dayIdx, sectionKey, i, ex.n);
-      const isSwapped = displayName !== ex.n;
+      const isManualSwap = !!overrides[overrideKey(dayIdx, sectionKey, i)];
+      const isSwapped = isManualSwap;
+      const isRotated = !isManualSwap && displayName !== ex.n;
 
       const item = document.createElement('div');
       item.className = 'exercise-item';
@@ -1523,13 +1612,18 @@
       nm.textContent = displayName;
       const st = document.createElement('span');
       st.className = 'ex-sets';
-      st.textContent = ex.s;
+      st.textContent = progressedSets(ex.n, ex.s, sectionKey, !!ex.t);
       info.appendChild(nm);
       info.appendChild(st);
       if(isSwapped){
         const badge = document.createElement('span');
         badge.className = 'ex-badge';
         badge.textContent = 'swapped';
+        info.appendChild(badge);
+      } else if(isRotated){
+        const badge = document.createElement('span');
+        badge.className = 'ex-badge custom';
+        badge.textContent = 'week ' + currentWeekLetter;
         info.appendChild(badge);
       }
 
@@ -1699,6 +1793,14 @@
           const rPart = last.reps != null ? last.reps : '—';
           lastLine.textContent = 'Last time: ' + wPart + ' × ' + rPart + ' (' + last.date + ')';
           item.appendChild(lastLine);
+          const sw = suggestedWeight(last);
+          if(sw != null){
+            const tryLine = document.createElement('div');
+            tryLine.className = 'log-last';
+            tryLine.style.color = 'var(--accent)';
+            tryLine.textContent = 'Try: ' + sw + ' lb this time';
+            item.appendChild(tryLine);
+          }
         }
       }
 
@@ -1822,6 +1924,14 @@
           const rPart = last.reps != null ? last.reps : '—';
           lastLine.textContent = 'Last time: ' + wPart + ' × ' + rPart + ' (' + last.date + ')';
           item.appendChild(lastLine);
+          const sw = suggestedWeight(last);
+          if(sw != null){
+            const tryLine = document.createElement('div');
+            tryLine.className = 'log-last';
+            tryLine.style.color = 'var(--accent)';
+            tryLine.textContent = 'Try: ' + sw + ' lb this time';
+            item.appendChild(tryLine);
+          }
         }
       }
 
@@ -1962,7 +2072,7 @@
     card.appendChild(focus);
 
     renderSection(card, dateK, dayIdx, 'warmup', 'Warm-Up', '🔥', plan.warmup);
-    renderSection(card, dateK, dayIdx, 'main', 'Main Work', '💪', plan.main, plan.mainNote);
+    renderSection(card, dateK, dayIdx, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote));
     renderSection(card, dateK, dayIdx, 'cooldown', 'Cool-Down', '🧘', plan.cooldown);
 
     const banner = document.createElement('div');
@@ -1996,7 +2106,7 @@
       body.className = 'week-day-body';
       if(openDay===i){
         renderSection(body, dk, i, 'warmup', 'Warm-Up', '🔥', plan.warmup);
-        renderSection(body, dk, i, 'main', 'Main Work', '💪', plan.main, plan.mainNote);
+        renderSection(body, dk, i, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote));
         renderSection(body, dk, i, 'cooldown', 'Cool-Down', '🧘', plan.cooldown);
       }
       wd.appendChild(body);
@@ -2107,6 +2217,8 @@
   });
 
   // ---------------- INIT ----------------
+  const subtitleEl = document.getElementById('weekSubtitle');
+  if(subtitleEl) subtitleEl.textContent = 'Week ' + currentWeekLetter + ' (' + currentWeekStyle.name + ') of your 4-week cycle.';
   renderLadder();
   renderToday();
   renderWorkout();
