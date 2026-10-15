@@ -879,7 +879,7 @@
     "Single-Leg Glute Bridge":"Same as a glute bridge, but with one foot lifted — press through the planted heel to lift your hips.",
     "Bird Dog":"On hands and knees, extend one arm and the opposite leg in line with your torso, keeping your hips level.",
     "Superman Hold":"Face down, lift your arms, chest, and legs off the floor together and hold, squeezing your glutes and back.",
-    "Bodyweight Sumo Squat":"Feet wide, toes turned out, sit straight down keeping your chest tall, then drive through your heels.",
+    "Sumo Squat":"Feet wide, toes turned out, sit straight down keeping your chest tall, then drive through your heels.",
     "Step-Up":"Step fully onto a sturdy platform, drive through that heel to stand tall, then step back down with control.",
     "Plank":"Forearms and toes on the floor, body in a straight line from head to heels, core braced.",
     "Crunch":"On your back, knees bent, curl your shoulder blades off the floor by contracting your abs, then lower with control.",
@@ -889,6 +889,15 @@
     "Kneeling Overhead Side Reach":"Kneel upright with hands together overhead in a triangle shape, bend sideways reaching down toward the floor, alternating sides.",
     "Half-Kneeling Side Bend":"From a half-kneeling lunge (one knee down, other foot out at 45°), hand on hip, other hand behind your head, bend sideways down toward your front knee, then switch sides.",
     "Stair Sprints":"Climb a flight (or half-flight) of stairs at a brisk pace, then walk back down slowly to recover before repeating.",
+    "Wall Sit":"Back flat against a wall, slide down until your knees are about 90°, feet flat and shoulder-width. Hold, pressing your back into the wall.",
+    "Clamshell":"Lie on your side, knees bent, feet together. Keeping your feet touching, lift your top knee like a clam opening, then lower slowly.",
+    "Side-Lying Leg Raise":"Lie on your side with your legs straight. Lift your top leg to about hip height with toes pointing forward, then lower slowly.",
+    "Chest Fly":"Lying down with dumbbells over your chest and a soft bend in your elbows, open your arms wide in an arc, then squeeze them back together.",
+    "Triceps Extension":"Hold one dumbbell overhead with both hands, lower it behind your head by bending your elbows, then press back up.",
+    "Reverse Fly":"Hinge forward with a flat back, dumbbells hanging. With a soft bend in your elbows, raise your arms out to the sides, squeezing your shoulder blades.",
+    "Good Morning":"Hands behind your head or a dumbbell held at your chest, soft knees. Hinge at the hips, pushing your butt back until you feel your hamstrings, then stand tall.",
+    "Ab Circuit":"Your ab circuit — do it the way you know it.",
+    "Stair Climbs":"Walk up the stairs at a brisk pace, then walk back down slowly to recover. Skip or shorten this if your Achilles or peroneal tendons are flaring.",
     "Split Squat":"Feet in a stationary lunge stance, lower straight down until both knees bend to about 90°, then push back up without stepping.",
     "Curtsy Lunge":"Step one leg diagonally behind the other like a curtsy, bend both knees, then push back to standing.",
     "Lateral Lunge":"Step one leg out to the side and bend that knee while keeping the other leg straight, then push back to standing.",
@@ -911,183 +920,91 @@
     "Pilates Ball Russian Twist":"Sitting with knees bent and feet lifted slightly, hold the ball with both hands and rotate side to side, tapping it near the floor on each side."
   };
 
-  const WEEK = [
-    {
-      day:"Monday", focus:"Lower Body",
-      warmup:[
-        {n:"Bodyweight Squat", s:"1 × 10"},
-        {n:"Glute Bridge", s:"1 × 10"},
-        {n:"Hip Hinge", s:"1 × 10"},
-        {n:"Reverse Lunge", s:"1 × 6/side"}
-      ],
-      main:[
-        {n:"Goblet Squat", s:"3 × 10–12"},
-        {n:"Romanian Deadlift", s:"3 × 10–12"},
-        {n:"Hip Thrust", s:"3 × 10–15"},
-        {n:"Reverse Lunge", s:"3 × 8–10/side"},
-        {n:"Slider Knee Tuck", s:"3 × 8–12"},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      cooldown:[
-        {n:"Standing Quad Stretch", s:"30s/side", t:30},
-        {n:"Standing Hamstring Stretch", s:"30s/side", t:30},
-        {n:"Kneeling Hip-Flexor Stretch", s:"30s/side", t:30},
-        {n:"Figure-4 Glute Stretch", s:"30s/side", t:30},
-        {n:"Standing Calf Stretch", s:"30s/side", t:30}
-      ]
-    },
-    {
-      day:"Tuesday", focus:"Upper Body Push/Pull",
-      warmup:[
-        {n:"Arm Circles", s:"1 × 10 each dir"},
-        {n:"Band Pull-Apart", s:"1 × 10"},
-        {n:"Wall Slide", s:"1 × 10"},
-        {n:"Light Row", s:"1 × 8/side"},
-        {n:"Easy Incline Push-Up", s:"1 × 8"}
-      ],
-      main:[
-        {n:"Dumbbell Chest Press", s:"3 × 8–12"},
-        {n:"One-Arm Row", s:"3 × 10–12/side"},
-        {n:"Shoulder Press", s:"3 × 8–12"},
-        {n:"Biceps Curl", s:"3 × 10–12"},
-        {n:"Lateral Raise", s:"3 × 10–15"},
-        {n:"Dead Bug", s:"3 × 8–10/side"},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      cooldown:[
-        {n:"Doorway Chest Stretch", s:"30s/side", t:30},
-        {n:"Cross-Body Shoulder Stretch", s:"30s/side", t:30},
-        {n:"Overhead Triceps Stretch", s:"30s/side", t:30},
-        {n:"Standing Lat Stretch", s:"30s/side", t:30},
-        {n:"Wrist/Biceps Stretch", s:"20–30s/side", t:25}
-      ]
-    },
-    {
-      day:"Wednesday", focus:"Full-Body Metabolic Circuit",
-      warmup:[
-        {n:"Jumping Jacks or Marches", s:"30 sec", t:30},
-        {n:"Arm Swings", s:"1 × 10"},
-        {n:"Bodyweight Squat", s:"1 × 10"},
-        {n:"Inchworm", s:"1 × 5"}
-      ],
-      main:[
-        {n:"Dumbbell Thruster", s:"3 rounds × 40s", t:40},
-        {n:"Renegade Row", s:"3 rounds × 40s", t:40},
-        {n:"Reverse Lunge to Knee Drive", s:"3 rounds × 40s", t:40},
-        {n:"Band Row", s:"3 rounds × 40s", t:40},
-        {n:"Mountain Climbers", s:"3 rounds × 40s", t:40},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      mainNote:"Circuit format — 40 sec work / 20 sec rest between moves, rest 60 sec between rounds. Tap ⏱ on a move to time the 40 sec, and the Rest Timer for the 20 sec break.",
-      cooldown:[
-        {n:"Child's Pose", s:"30–45 sec", t:35},
-        {n:"Standing Quad Stretch", s:"30s/side", t:30},
-        {n:"Doorway Chest Stretch", s:"30s/side", t:30},
-        {n:"Seated Hamstring Stretch", s:"30s/side", t:30}
-      ]
-    },
-    {
-      day:"Thursday", focus:"Posterior Chain + Back",
-      warmup:[
-        {n:"Band Pull-Apart", s:"1 × 10"},
-        {n:"Hip Hinge", s:"1 × 10"},
-        {n:"Glute Bridge", s:"1 × 10"},
-        {n:"Cat-Cow", s:"1 × 8"}
-      ],
-      main:[
-        {n:"Dumbbell Deadlift", s:"3 × 10–12"},
-        {n:"Bent-Over Row", s:"3 × 10–12"},
-        {n:"Single-Leg Glute Bridge", s:"3 × 10/side"},
-        {n:"Bird Dog", s:"3 × 8/side"},
-        {n:"Superman Hold", s:"3 × 15 sec", t:15},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      cooldown:[
-        {n:"Standing Lat Stretch", s:"30s/side", t:30},
-        {n:"Kneeling Hip-Flexor Stretch", s:"30s/side", t:30},
-        {n:"Figure-4 Glute Stretch", s:"30s/side", t:30},
-        {n:"Child's Pose", s:"30–45 sec", t:35}
-      ]
-    },
-    {
-      day:"Friday", focus:"Total Body Strength Finisher",
-      warmup:[
-        {n:"Arm Circles", s:"1 × 10 each dir"},
-        {n:"Bodyweight Sumo Squat", s:"1 × 10"},
-        {n:"Band Pull-Apart", s:"1 × 10"},
-        {n:"Hip Hinge", s:"1 × 10"}
-      ],
-      main:[
-        {n:"Goblet Squat", s:"3 × 10 (superset)"},
-        {n:"Shoulder Press", s:"3 × 10 (superset)"},
-        {n:"Step-Up", s:"3 × 8/side (superset)"},
-        {n:"One-Arm Row", s:"3 × 8/side (superset)"},
-        {n:"Plank", s:"3 × 30–45 sec", t:35},
-        {n:"Crunch", s:"3 × 15"},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      mainNote:"Supersets — pair the first two, then the next two, resting only after each pair.",
-      cooldown:[
-        {n:"Standing Calf Stretch", s:"30s/side", t:30},
-        {n:"Cross-Body Shoulder Stretch", s:"30s/side", t:30},
-        {n:"Seated Hamstring Stretch", s:"30s/side", t:30},
-        {n:"Overhead Triceps Stretch", s:"30s/side", t:30}
-      ]
-    },
-    {
-      day:"Saturday", focus:"Kneeling Core Circuit",
-      warmup:[
-        {n:"Cat-Cow", s:"1 × 8"},
-        {n:"Arm Circles", s:"1 × 10 each dir"},
-        {n:"Bodyweight Squat", s:"1 × 10"}
-      ],
-      main:[
-        {n:"Kneeling Alternating Ankle Reach", s:"4 × 25"},
-        {n:"Kneeling Alternating Torso Twist", s:"4 × 25"},
-        {n:"Kneeling Alternating Side Reach", s:"4 × 25"},
-        {n:"Kneeling Overhead Side Reach", s:"4 × 25"},
-        {n:"Half-Kneeling Side Bend", s:"4 × 25/side"},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      cooldown:[
-        {n:"Standing Calf Stretch", s:"30s/side", t:30},
-        {n:"Kneeling Hip-Flexor Stretch", s:"30s/side", t:30},
-        {n:"Child's Pose", s:"30–45 sec", t:35}
-      ]
-    },
-    {
-      day:"Sunday", focus:"Kneeling Core Circuit",
-      warmup:[
-        {n:"Cat-Cow", s:"1 × 8"},
-        {n:"Arm Circles", s:"1 × 10 each dir"},
-        {n:"Bodyweight Squat", s:"1 × 10"}
-      ],
-      main:[
-        {n:"Kneeling Alternating Ankle Reach", s:"4 × 25"},
-        {n:"Kneeling Alternating Torso Twist", s:"4 × 25"},
-        {n:"Kneeling Alternating Side Reach", s:"4 × 25"},
-        {n:"Kneeling Overhead Side Reach", s:"4 × 25"},
-        {n:"Half-Kneeling Side Bend", s:"4 × 25/side"},
-        {n:"Stair Sprints", s:"3 × 8 climbs"}
-      ],
-      cooldown:[
-        {n:"Standing Calf Stretch", s:"30s/side", t:30},
-        {n:"Kneeling Hip-Flexor Stretch", s:"30s/side", t:30},
-        {n:"Child's Pose", s:"30–45 sec", t:35}
-      ]
-    }
+  // ---- building blocks for the plan ----
+  const R  = (n, s)    => ({n, s});              // rep-based move
+  const T  = (n, s, t) => ({n, s, t});           // timed move (gets a ⏱ button)
+  const CIRC = n => T(n, "3 rounds × 40s", 40);  // circuit station
+  const AB = {n:"Ab Circuit", s:"", nolog:true}; // your ab circuit — on every day
+  const STAIRS = {n:"Stair Climbs", s:"3 × 8 (brisk walk)"};
+  const day = (day, focus, warmup, main, cooldown, mainNote) => ({day, focus, warmup, main, cooldown, mainNote});
+  const KNEEL = reps => [
+    R("Kneeling Alternating Ankle Reach","4 × "+reps),
+    R("Kneeling Alternating Torso Twist","4 × "+reps),
+    R("Kneeling Alternating Side Reach","4 × "+reps),
+    R("Kneeling Overhead Side Reach","4 × "+reps),
+    R("Half-Kneeling Side Bend","4 × "+reps+"/side")
   ];
 
-  const DAY_NAMES = WEEK.map(d=>d.day);
+  const WU_LOWER = [R("Bodyweight Squat","1 × 10"), R("Glute Bridge","1 × 10"), R("Hip Hinge","1 × 10")];
+  const WU_UPPER = [R("Arm Circles","1 × 10 each dir"), R("Band Pull-Apart","1 × 10"), R("Wall Slide","1 × 10"), R("Light Row","1 × 8/side"), R("Easy Incline Push-Up","1 × 8")];
+  const WU_FULL  = [R("Arm Swings","1 × 10"), R("Cat-Cow","1 × 8"), R("Bodyweight Squat","1 × 10"), R("Hip Hinge","1 × 10")];
+  const WU_POST  = [R("Band Pull-Apart","1 × 10"), R("Hip Hinge","1 × 10"), R("Glute Bridge","1 × 10"), R("Cat-Cow","1 × 8")];
+  const WU_CORE  = [R("Cat-Cow","1 × 8"), R("Arm Circles","1 × 10 each dir"), R("Bodyweight Squat","1 × 10")];
+  const CD_LOWER = [T("Standing Quad Stretch","30s/side",30), T("Standing Hamstring Stretch","30s/side",30), T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Figure-4 Glute Stretch","30s/side",30)];
+  const CD_UPPER = [T("Doorway Chest Stretch","30s/side",30), T("Cross-Body Shoulder Stretch","30s/side",30), T("Overhead Triceps Stretch","30s/side",30), T("Standing Lat Stretch","30s/side",30), T("Wrist/Biceps Stretch","20–30s/side",25)];
+  const CD_FULL  = [T("Child's Pose","30–45 sec",35), T("Standing Quad Stretch","30s/side",30), T("Doorway Chest Stretch","30s/side",30), T("Seated Hamstring Stretch","30s/side",30)];
+  const CD_POST  = [T("Standing Lat Stretch","30s/side",30), T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Figure-4 Glute Stretch","30s/side",30), T("Child's Pose","30–45 sec",35)];
+  const CD_CORE  = [T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Child's Pose","30–45 sec",35)];
+
+  const CIRCUIT_NOTE = "Circuit format — 40 sec work / 20 sec rest between moves, rest 60 sec between rounds. Tap ⏱ on a move to time it.";
+
+  // WEEK A — Volume
+  const WEEK_A = [
+    day("Monday","Lower Body — Quads & Glutes", WU_LOWER, [R("Goblet Squat","3 × 12"), R("Romanian Deadlift","3 × 12"), R("Hip Thrust","3 × 15"), R("Pilates Ball Wall Squat","3 × 12"), R("Clamshell","3 × 15/side"), AB], CD_LOWER),
+    day("Tuesday","Upper Body Push/Pull", WU_UPPER, [R("Dumbbell Chest Press","3 × 12"), R("One-Arm Row","3 × 12/side"), R("Shoulder Press","3 × 12"), R("Biceps Curl","3 × 12"), R("Triceps Extension","3 × 12"), R("Lateral Raise","3 × 15"), STAIRS, AB], CD_UPPER),
+    day("Wednesday","Full-Body Circuit", WU_FULL, [CIRC("Dumbbell Thruster"), CIRC("Renegade Row"), CIRC("Sumo Squat"), CIRC("Band Row"), CIRC("Dead Bug"), AB], CD_FULL, CIRCUIT_NOTE),
+    day("Thursday","Posterior Chain + Back", WU_POST, [R("Dumbbell Deadlift","3 × 12"), R("Bent-Over Row","3 × 12"), R("Single-Leg Glute Bridge","3 × 12/side"), R("Reverse Fly","3 × 15"), R("Bird Dog","3 × 10/side"), T("Superman Hold","3 × 20s",20), AB], CD_POST),
+    day("Friday","Total Body Finisher", WU_FULL, [R("Goblet Squat","3 × 12"), R("Shoulder Press","3 × 12"), R("Pilates Ball Squeeze Bridge","3 × 15"), R("One-Arm Row","3 × 10/side"), T("Plank","3 × 40s",40), AB], CD_FULL),
+    day("Saturday","Low-Impact Strength Mix", WU_FULL, [R("Sumo Squat","3 × 15"), R("Standard Push-Up","3 × 10"), R("Kneeling Single-Arm Row","3 × 12/side"), R("Glute Bridge","3 × 20"), R("Side-Lying Leg Raise","3 × 15/side"), STAIRS, AB], CD_FULL),
+    day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(25).concat([AB]), CD_CORE)
+  ];
+
+  // WEEK B — Strength
+  const WEEK_B = [
+    day("Monday","Lower Body — Heavy", WU_LOWER, [R("Goblet Squat","4 × 8"), R("Romanian Deadlift","4 × 8"), R("Hip Thrust","4 × 10"), R("Pilates Ball Heel Squeeze Bridge","3 × 12"), T("Wall Sit","3 × 30s",30), AB], CD_LOWER),
+    day("Tuesday","Upper Body — Heavy", WU_UPPER, [R("Dumbbell Chest Press","4 × 8"), R("Bent-Over Row","4 × 8"), R("Shoulder Press","4 × 8"), R("Hammer Curl","3 × 10"), R("Chest Fly","3 × 10"), AB], CD_UPPER),
+    day("Wednesday","Full-Body Strength", WU_FULL, [R("Dumbbell Thruster","3 × 8"), R("Renegade Row","3 × 6/side"), R("Dumbbell Deadlift","3 × 8"), R("Arnold Press","3 × 8"), R("Pilates Ball Squeeze Press","3 × 10"), STAIRS, AB], CD_FULL),
+    day("Thursday","Posterior Chain — Heavy", WU_POST, [R("Good Morning","4 × 8"), R("Kneeling Single-Arm Row","4 × 8/side"), R("Single-Leg Glute Bridge","3 × 10/side"), R("Reverse Fly","3 × 12"), R("Bird Dog","3 × 8/side"), AB], CD_POST),
+    day("Friday","Total Body Strength", WU_FULL, [R("Pilates Ball Wall Squat","3 × 12"), R("Standard Push-Up","3 × 10"), R("Bent-Over Row","3 × 8"), R("Lateral Raise","3 × 12"), R("Pilates Ball Squeeze Bridge","3 × 12"), T("Plank","3 × 40s",40), AB], CD_FULL),
+    day("Saturday","Low-Impact Strength Mix", WU_FULL, [R("Hip Thrust","3 × 12"), R("Dumbbell Chest Press","3 × 10"), R("One-Arm Row","3 × 10/side"), R("Front Raise","3 × 12"), R("Side-Lying Leg Raise","3 × 12/side"), STAIRS, AB], CD_FULL),
+    day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(20).concat([AB]), CD_CORE)
+  ];
+
+  // WEEK C — Circuit
+  const WEEK_C = [
+    day("Monday","Lower Body Circuit", WU_LOWER, [CIRC("Goblet Squat"), CIRC("Glute Bridge"), CIRC("Romanian Deadlift"), CIRC("Pilates Ball Wall Squat"), CIRC("Clamshell"), AB], CD_LOWER, CIRCUIT_NOTE),
+    day("Tuesday","Upper Body Circuit", WU_UPPER, [CIRC("Dumbbell Chest Press"), CIRC("Bent-Over Row"), CIRC("Arnold Press"), CIRC("Hammer Curl"), CIRC("Front Raise"), STAIRS, AB], CD_UPPER, CIRCUIT_NOTE),
+    day("Wednesday","Full-Body Circuit", WU_FULL, [CIRC("Dumbbell Thruster"), CIRC("Renegade Row"), CIRC("Sumo Squat"), CIRC("Band Row"), CIRC("Pilates Ball Push-Up"), AB], CD_FULL, CIRCUIT_NOTE),
+    day("Thursday","Posterior Chain Circuit", WU_POST, [CIRC("Dumbbell Deadlift"), CIRC("Kneeling Single-Arm Row"), CIRC("Pilates Ball Squeeze Bridge"), CIRC("Reverse Fly"), CIRC("Superman Hold"), AB], CD_POST, CIRCUIT_NOTE),
+    day("Friday","Total Body Circuit", WU_FULL, [CIRC("Goblet Squat"), CIRC("Standard Push-Up"), CIRC("One-Arm Row"), CIRC("Hip Thrust"), CIRC("Pilates Ball Plank"), STAIRS, AB], CD_FULL, CIRCUIT_NOTE),
+    day("Saturday","Ball + Band Circuit", WU_FULL, [CIRC("Pilates Ball Squeeze Bridge"), CIRC("Pilates Ball Squeeze Press"), CIRC("Band Row"), CIRC("Wall Sit"), CIRC("Pilates Ball Russian Twist"), AB], CD_FULL, CIRCUIT_NOTE),
+    day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(25).concat([AB]), CD_CORE)
+  ];
+
+  // WEEK D — Superset Burnout (moves are listed in pairs: 1+2, 3+4, 5+6…)
+  const PAIR_NOTE = "Moves are paired in order: 1+2, then 3+4, and so on.";
+  const WEEK_D = [
+    day("Monday","Lower Body Burnout", WU_LOWER, [R("Goblet Squat","3 × 15"), R("Romanian Deadlift","3 × 15"), R("Hip Thrust","3 × 20"), R("Pilates Ball Wall Squat","3 × 15"), R("Clamshell","3 × 20/side"), STAIRS, AB], CD_LOWER, PAIR_NOTE),
+    day("Tuesday","Upper Body Burnout", WU_UPPER, [R("Standard Push-Up","3 × 15"), R("Bent-Over Row","3 × 15"), R("Arnold Press","3 × 12"), R("One-Arm Row","3 × 12/side"), R("Biceps Curl","3 × 15"), R("Triceps Extension","3 × 15"), AB], CD_UPPER, PAIR_NOTE),
+    day("Wednesday","Full-Body Burnout", WU_FULL, [R("Dumbbell Thruster","3 × 15"), R("Renegade Row","3 × 10/side"), R("Sumo Squat","3 × 20"), R("Band Row","3 × 15"), R("Pilates Ball Push-Up","3 × 12"), AB], CD_FULL, PAIR_NOTE),
+    day("Thursday","Posterior Chain Burnout", WU_POST, [R("Dumbbell Deadlift","3 × 15"), R("Reverse Fly","3 × 15"), R("Single-Leg Glute Bridge","3 × 15/side"), R("Pilates Ball Heel Squeeze Bridge","3 × 15"), T("Superman Hold","3 × 30s",30), AB], CD_POST, PAIR_NOTE),
+    day("Friday","Total Body Burnout", WU_FULL, [R("Goblet Squat","3 × 15"), R("Shoulder Press","3 × 15"), R("Hip Thrust","3 × 20"), R("Kneeling Single-Arm Row","3 × 12/side"), T("Side Plank","3 × 30s/side",30), STAIRS, AB], CD_FULL, PAIR_NOTE),
+    day("Saturday","Low-Impact Burnout", WU_FULL, [R("Chest Fly","3 × 15"), R("Lateral Raise","3 × 15"), R("Glute Bridge","3 × 25"), R("Side-Lying Leg Raise","3 × 20/side"), R("Pilates Ball Russian Twist","3 × 20"), AB], CD_FULL, PAIR_NOTE),
+    day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(30).concat([AB]), CD_CORE)
+  ];
+
+  const WEEKS = [WEEK_A, WEEK_B, WEEK_C, WEEK_D];
+  const DAY_NAMES = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 
   // Substitution pools — grouped by movement pattern. Any exercise in a pool
   // can swap for any other in that pool.
   const SUB_POOLS = [
-    ["Bodyweight Squat","Goblet Squat","Bodyweight Sumo Squat","Step-Up","Reverse Lunge","Split Squat","Pilates Ball Wall Squat"],
-    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge","Single-Leg Deadlift","Pilates Ball Squeeze Bridge","Pilates Ball Heel Squeeze Bridge"],
-    ["Easy Incline Push-Up","Dumbbell Chest Press","Shoulder Press","Dumbbell Thruster","Standard Push-Up","Arnold Press","Pilates Ball Push-Up","Pilates Ball Squeeze Press"],
-    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row","Kneeling Single-Arm Row"],
-    ["Biceps Curl","Lateral Raise","Hammer Curl","Front Raise"],
+    ["Bodyweight Squat","Goblet Squat","Sumo Squat","Step-Up","Reverse Lunge","Split Squat","Pilates Ball Wall Squat","Wall Sit"],
+    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge","Single-Leg Deadlift","Pilates Ball Squeeze Bridge","Pilates Ball Heel Squeeze Bridge","Good Morning"],
+    ["Easy Incline Push-Up","Dumbbell Chest Press","Shoulder Press","Dumbbell Thruster","Standard Push-Up","Arnold Press","Pilates Ball Push-Up","Pilates Ball Squeeze Press","Chest Fly"],
+    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row","Kneeling Single-Arm Row","Reverse Fly"],
+    ["Biceps Curl","Lateral Raise","Hammer Curl","Front Raise","Triceps Extension"],
+    ["Clamshell","Side-Lying Leg Raise"],
     ["Slider Knee Tuck","Dead Bug","Crunch","Bird Dog","Pilates Ball Knee Squeeze Crunch","Pilates Ball Russian Twist"],
     ["Plank","Superman Hold","Pilates Ball Plank","Side Plank"],
     ["Reverse Lunge","Reverse Lunge to Knee Drive","Step-Up","Curtsy Lunge","Lateral Lunge"],
@@ -1191,6 +1108,8 @@
     { name:"Superset Burnout", repsDelta:2,  weightBump:0,   note:"Burnout week — pair each move with the next one, no rest between the pair, then rest before the next pair." }
   ];
   const currentWeekStyle = WEEK_STYLES[currentWeekIdx];
+  const WEEK = WEEKS[currentWeekIdx];   // this calendar week's plan
+  let viewWeekIdx = currentWeekIdx;     // which week the Workout tab is previewing
 
   let store = loadStore();
   let overrides = loadOverrides();
@@ -1242,63 +1161,34 @@
   }
   function isDayComplete(dateK, dayIdx){ return dayCompletion(dateK, dayIdx) >= 1; }
 
-  function overrideKey(dayIdx, section, i){ return dayIdx+"|"+section+"|"+i; }
-  function weeklyRotatedName(section, original){
-    // Only rotate Main Work — warm-ups/cool-downs stay stable week to week.
-    if(section !== 'main') return original;
-    const info = poolIndexOf(original);
-    if(!info) return original;
-    const newIdx = (info.idx + currentWeekIdx) % info.pool.length;
-    return info.pool[newIdx];
+  function overrideKey(wk, dayIdx, section, i){ return wk+"|"+dayIdx+"|"+section+"|"+i; }
+  function effectiveName(wk, dayIdx, section, i, original){
+    return overrides[overrideKey(wk, dayIdx, section, i)] || original;
   }
-  function effectiveName(dayIdx, section, i, original){
-    const v = overrides[overrideKey(dayIdx, section, i)];
-    if(v) return v; // a manual swap always wins over the automatic weekly rotation
-    return weeklyRotatedName(section, original);
-  }
-  function progressedSets(exName, setsStr, section, hasTimer){
-    // Family lifts (ones with a swap pool) follow the week's training style —
-    // e.g. fewer reps on a Strength week, more on a Burnout week. Exercises
-    // with no pool (Stair Sprints, the kneeling core moves) just climb
-    // steadily each week of the cycle instead.
-    if(section !== 'main' || hasTimer) return setsStr;
-    const inPool = !!poolIndexOf(exName);
-    const delta = inPool ? currentWeekStyle.repsDelta : currentWeekIdx;
-    if(delta === 0) return setsStr;
-    let m = setsStr.match(/(\d+)\s*[–-]\s*(\d+)/);
-    if(m){
-      const lo = Math.max(4, parseInt(m[1],10) + delta);
-      const hi = Math.max(lo+1, parseInt(m[2],10) + delta);
-      return setsStr.replace(m[0], lo+'–'+hi);
-    }
-    m = setsStr.match(/×\s*(\d+)(?!\s*(rounds|sec))/);
-    if(m){
-      const val = Math.max(4, parseInt(m[1],10) + delta);
-      return setsStr.replace(m[0], '× '+val);
-    }
-    return setsStr;
-  }
-  function setOverride(dayIdx, section, i, name, original){
-    const k = overrideKey(dayIdx, section, i);
+  function setOverride(wk, dayIdx, section, i, name, original){
+    const k = overrideKey(wk, dayIdx, section, i);
     if(!name || name === original){ delete overrides[k]; }
     else overrides[k] = name;
     saveOverrides(overrides);
   }
 
-  function findLastLog(dayIdx, section, i, excludeDateK){
-    const logKey = section+"-"+i;
+  function findLastLog(name, excludeDateK){
+    // Look back through history for the most recent time this exact exercise was logged.
     const keys = Object.keys(store).filter(k=>k!==excludeDateK).sort().reverse();
     for(const k of keys){
-      if(planIdxForDate(k) !== dayIdx) continue;
-      const rec = store[k];
-      if(rec.logs && rec.logs[logKey] && (rec.logs[logKey].weight != null || rec.logs[logKey].reps != null)){
-        return Object.assign({date:k}, rec.logs[logKey]);
+      const logs = store[k].logs;
+      if(!logs) continue;
+      for(const lk of Object.keys(logs)){
+        const e = logs[lk];
+        if(e && e.name === name && (e.weight != null || e.reps != null)){
+          return Object.assign({date:k}, e);
+        }
       }
     }
     return null;
   }
-  function combinedMainNote(baseNote){
-    return (baseNote ? baseNote + ' ' : '') + currentWeekStyle.note;
+  function combinedMainNote(baseNote, wk){
+    return (baseNote ? baseNote + ' ' : '') + WEEK_STYLES[wk].note;
   }
   function suggestedWeight(last){
     if(!last || last.weight == null) return null;
@@ -1565,7 +1455,9 @@
   }
 
   // ---------------- RENDER: EXERCISE LIST (shared) ----------------
-  function renderSection(container, dateK, dayIdx, sectionKey, label, icon, list, note){
+  function renderSection(container, dateK, dayIdx, sectionKey, label, icon, list, note, opts){
+    const wk = (opts && opts.wk != null) ? opts.wk : currentWeekIdx;
+    const readOnly = !!(opts && opts.readOnly);
     const lbl = document.createElement('div');
     lbl.className = 'section-label';
     lbl.textContent = icon + " " + label;
@@ -1581,11 +1473,10 @@
     const wrap = document.createElement('div');
     wrap.className = sectionKey;
     list.forEach((ex, i)=>{
-      const infoKey = dayIdx+"|"+sectionKey+"|"+i;
-      const displayName = effectiveName(dayIdx, sectionKey, i, ex.n);
-      const isManualSwap = !!overrides[overrideKey(dayIdx, sectionKey, i)];
-      const isSwapped = isManualSwap;
-      const isRotated = !isManualSwap && displayName !== ex.n;
+      const infoKey = wk+"|"+dayIdx+"|"+sectionKey+"|"+i;
+      const displayName = effectiveName(wk, dayIdx, sectionKey, i, ex.n);
+      const isSwapped = !!overrides[overrideKey(wk, dayIdx, sectionKey, i)];
+      const checked = !readOnly && isExerciseChecked(dateK, sectionKey, i);
 
       const item = document.createElement('div');
       item.className = 'exercise-item';
@@ -1594,10 +1485,11 @@
       row.className = 'exercise';
 
       const cb = document.createElement('div');
-      cb.className = 'checkbox' + (isExerciseChecked(dateK, sectionKey, i) ? ' checked':'');
-      cb.tabIndex = 0;
+      cb.className = 'checkbox' + (checked ? ' checked':'');
+      cb.tabIndex = readOnly ? -1 : 0;
       cb.setAttribute('role','checkbox');
-      cb.setAttribute('aria-checked', isExerciseChecked(dateK, sectionKey, i));
+      cb.setAttribute('aria-checked', checked);
+      if(readOnly){ cb.style.pointerEvents = 'none'; cb.style.opacity = '0.3'; }
       const doToggle = ()=>{
         toggleExercise(dateK, sectionKey, i);
         renderToday(); renderWorkout(); renderLadder(); renderProgress();
@@ -1608,22 +1500,17 @@
       const info = document.createElement('div');
       info.className = 'ex-info';
       const nm = document.createElement('span');
-      nm.className = 'ex-name' + (isExerciseChecked(dateK, sectionKey, i) && sectionKey==='main' ? ' struck':'');
+      nm.className = 'ex-name' + (checked && sectionKey==='main' ? ' struck':'');
       nm.textContent = displayName;
       const st = document.createElement('span');
       st.className = 'ex-sets';
-      st.textContent = progressedSets(ex.n, ex.s, sectionKey, !!ex.t);
+      st.textContent = ex.s;
       info.appendChild(nm);
-      info.appendChild(st);
+      if(ex.s) info.appendChild(st);
       if(isSwapped){
         const badge = document.createElement('span');
         badge.className = 'ex-badge';
         badge.textContent = 'swapped';
-        info.appendChild(badge);
-      } else if(isRotated){
-        const badge = document.createElement('span');
-        badge.className = 'ex-badge custom';
-        badge.textContent = 'week ' + currentWeekLetter;
         info.appendChild(badge);
       }
 
@@ -1650,7 +1537,7 @@
       row.appendChild(cb);
       row.appendChild(info);
       row.appendChild(infoBtn);
-      row.appendChild(swapBtn);
+      if(!readOnly) row.appendChild(swapBtn);
 
       if(ex.t){
         const timerBtn = document.createElement('button');
@@ -1669,7 +1556,7 @@
       desc.textContent = HOWTO[displayName] || HOWTO[ex.n] || "Move with control and stop if anything feels sharp or painful.";
       item.appendChild(desc);
 
-      if(openSwap.has(infoKey)){
+      if(!readOnly && openSwap.has(infoKey)){
         const panel = document.createElement('div');
         panel.className = 'swap-panel';
 
@@ -1688,7 +1575,7 @@
             b.textContent = alt;
             if(alt === displayName) b.classList.add('active');
             b.addEventListener('click', ()=>{
-              setOverride(dayIdx, sectionKey, i, alt, ex.n);
+              setOverride(wk, dayIdx, sectionKey, i, alt, ex.n);
               renderToday(); renderWorkout();
             });
             opts.appendChild(b);
@@ -1707,7 +1594,7 @@
         saveBtn.textContent = 'Save';
         saveBtn.addEventListener('click', ()=>{
           const v = inp.value.trim();
-          if(v){ setOverride(dayIdx, sectionKey, i, v, ex.n); renderToday(); renderWorkout(); }
+          if(v){ setOverride(wk, dayIdx, sectionKey, i, v, ex.n); renderToday(); renderWorkout(); }
         });
         customRow.appendChild(inp);
         customRow.appendChild(saveBtn);
@@ -1719,7 +1606,7 @@
           resetBtn.className = 'swap-reset';
           resetBtn.textContent = 'Reset to original: ' + ex.n;
           resetBtn.addEventListener('click', ()=>{
-            setOverride(dayIdx, sectionKey, i, null, ex.n);
+            setOverride(wk, dayIdx, sectionKey, i, null, ex.n);
             renderToday(); renderWorkout();
           });
           panel.appendChild(resetBtn);
@@ -1728,11 +1615,11 @@
         item.appendChild(panel);
       }
 
-      if(sectionKey === 'main'){
+      if(sectionKey === 'main' && !readOnly && !ex.nolog){
         const logKeyName = sectionKey+"-"+i;
         const rec = dayRecord(dateK);
         const existing = rec.logs[logKeyName] || {};
-        const last = findLastLog(dayIdx, sectionKey, i, dateK);
+        const last = findLastLog(displayName, dateK);
 
         const logRow = document.createElement('div');
         logRow.className = 'log-row';
@@ -1774,7 +1661,8 @@
           } else {
             recc.logs[logKeyName] = {
               weight: w ? parseFloat(w) : undefined,
-              reps: r ? parseInt(r,10) : undefined
+              reps: r ? parseInt(r,10) : undefined,
+              name: displayName
             };
           }
           saveStore(store);
@@ -1808,7 +1696,7 @@
     });
 
     // ---- custom user-added exercises for this day/section ----
-    getCustomList(dayIdx, sectionKey).forEach(c=>{
+    (readOnly ? [] : getCustomList(dayIdx, sectionKey)).forEach(c=>{
       const logKeyName = sectionKey + "-custom-" + c.id;
       const item = document.createElement('div');
       item.className = 'exercise-item';
@@ -1863,7 +1751,7 @@
       if(sectionKey === 'main'){
         const rec = dayRecord(dateK);
         const existing = rec.logs[logKeyName] || {};
-        const last = findLastLog(dayIdx, sectionKey, 'custom-'+c.id, dateK);
+        const last = findLastLog(c.n, dateK);
 
         const logRow = document.createElement('div');
         logRow.className = 'log-row';
@@ -1905,7 +1793,8 @@
           } else {
             recc.logs[logKeyName] = {
               weight: w ? parseFloat(w) : undefined,
-              reps: r ? parseInt(r,10) : undefined
+              reps: r ? parseInt(r,10) : undefined,
+              name: c.n
             };
           }
           saveStore(store);
@@ -1995,7 +1884,7 @@
       });
       addWrap.appendChild(addBtn);
     }
-    container.appendChild(addWrap);
+    if(!readOnly) container.appendChild(addWrap);
   }
 
   // ---------------- RENDER: TODAY ----------------
@@ -2072,7 +1961,7 @@
     card.appendChild(focus);
 
     renderSection(card, dateK, dayIdx, 'warmup', 'Warm-Up', '🔥', plan.warmup);
-    renderSection(card, dateK, dayIdx, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote));
+    renderSection(card, dateK, dayIdx, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote, currentWeekIdx));
     renderSection(card, dateK, dayIdx, 'cooldown', 'Cool-Down', '🧘', plan.cooldown);
 
     const banner = document.createElement('div');
@@ -2088,7 +1977,35 @@
   function renderWorkout(){
     const el = document.getElementById('view-workout');
     el.innerHTML = "";
-    WEEK.forEach((plan, i)=>{
+    const picker = document.createElement('div');
+    picker.className = 'card';
+    const pLabel = document.createElement('div');
+    pLabel.className = 'section-label';
+    pLabel.style.margin = '0 0 10px';
+    pLabel.textContent = '🗓 Preview a week';
+    picker.appendChild(pLabel);
+    const pBtns = document.createElement('div');
+    pBtns.className = 'swap-options';
+    pBtns.style.marginBottom = '6px';
+    WEEK_LETTERS.forEach((letter, w)=>{
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = letter + (w===currentWeekIdx ? ' · now' : '');
+      if(w === viewWeekIdx) b.classList.add('active');
+      b.addEventListener('click', ()=>{ viewWeekIdx = w; renderWorkout(); });
+      pBtns.appendChild(b);
+    });
+    picker.appendChild(pBtns);
+    const pNote = document.createElement('div');
+    pNote.className = 'day-select-hint';
+    pNote.style.margin = '0';
+    pNote.textContent = 'Week ' + WEEK_LETTERS[viewWeekIdx] + ' — ' + WEEK_STYLES[viewWeekIdx].name + (viewWeekIdx === currentWeekIdx ? ' (this week)' : ' · preview only, nothing to check off yet');
+    picker.appendChild(pNote);
+    el.appendChild(picker);
+
+    const isPreview = viewWeekIdx !== currentWeekIdx;
+    const ropts = {wk: viewWeekIdx, readOnly: isPreview};
+    WEEKS[viewWeekIdx].forEach((plan, i)=>{
       const dk = weekDates[i];
       const wd = document.createElement('div');
       wd.className = 'week-day' + (openDay===i ? ' open':'');
@@ -2096,7 +2013,7 @@
       const head = document.createElement('div');
       head.className = 'week-day-head';
       head.tabIndex = 0;
-      head.innerHTML = '<div><h3>'+plan.day+(plan.day===todayName ? ' · Today':'')+'</h3><span class="f">'+plan.focus+'</span></div><span class="chevron">▾</span>';
+      head.innerHTML = '<div><h3>'+plan.day+(!isPreview && plan.day===todayName ? ' · Today':'')+'</h3><span class="f">'+plan.focus+'</span></div><span class="chevron">▾</span>';
       const toggleOpen = ()=>{ openDay = (openDay===i) ? null : i; renderWorkout(); };
       head.addEventListener('click', toggleOpen);
       head.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleOpen(); }});
@@ -2105,9 +2022,9 @@
       const body = document.createElement('div');
       body.className = 'week-day-body';
       if(openDay===i){
-        renderSection(body, dk, i, 'warmup', 'Warm-Up', '🔥', plan.warmup);
-        renderSection(body, dk, i, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote));
-        renderSection(body, dk, i, 'cooldown', 'Cool-Down', '🧘', plan.cooldown);
+        renderSection(body, dk, i, 'warmup', 'Warm-Up', '🔥', plan.warmup, null, ropts);
+        renderSection(body, dk, i, 'main', 'Main Work', '💪', plan.main, combinedMainNote(plan.mainNote, viewWeekIdx), ropts);
+        renderSection(body, dk, i, 'cooldown', 'Cool-Down', '🧘', plan.cooldown, null, ropts);
       }
       wd.appendChild(body);
       el.appendChild(wd);
