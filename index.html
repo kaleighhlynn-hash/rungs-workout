@@ -790,7 +790,7 @@
 <body>
 
 <header class="top">
-  <p class="eyebrow">Home Gym · Fat Loss &amp; Tone</p>
+  <p class="eyebrow">Glutes · Legs · Core · Back</p>
   <h1 class="title">Rungs</h1>
   <p class="subtitle" id="weekSubtitle">Your 7-day plan. No two weekdays repeat.</p>
   <div class="ladder" id="ladder"></div>
@@ -889,6 +889,24 @@
     "Kneeling Overhead Side Reach":"Kneel upright with hands together overhead in a triangle shape, bend sideways reaching down toward the floor, alternating sides.",
     "Half-Kneeling Side Bend":"From a half-kneeling lunge (one knee down, other foot out at 45°), hand on hip, other hand behind your head, bend sideways down toward your front knee, then switch sides.",
     "Stair Sprints":"Climb a flight (or half-flight) of stairs at a brisk pace, then walk back down slowly to recover before repeating.",
+    "Donkey Kick":"On hands and knees (cushion under your knees), keep one knee bent at 90° and press that foot toward the ceiling, squeezing your glute at the top, then lower with control.",
+    "Fire Hydrant":"On hands and knees, keep one knee bent and lift that leg out to the side without twisting your hips, then lower slowly.",
+    "Frog Pump":"Lie on your back with the soles of your feet together and your knees dropped out wide. Drive your hips up, squeezing your glutes, then lower.",
+    "Banded Glute Bridge":"Lie on your back, knees bent, a loop band just above your knees. Press your knees out against the band as you lift your hips, squeezing your glutes, then lower.",
+    "Banded Hip Thrust":"Upper back on a couch or bench, a loop band just above your knees. Drive your hips up while pressing your knees out against the band, squeeze at the top, then lower.",
+    "Hamstring Slider Curl":"Lie on your back with your heels on sliders (or a towel on a smooth floor) and your hips lifted. Slide your heels out, then pull them back toward your glutes, keeping your hips up.",
+    "Chair Squat":"Stand in front of a chair, feet shoulder-width. Sit back and down until you lightly touch the seat, then stand, driving through your heels with your knees over your toes.",
+    "Band Lat Pulldown":"Anchor a band overhead (a door anchor works). Sit or kneel, pull the band down toward your chest with your elbows going to your sides, squeezing your shoulder blades.",
+    "Seated One-Arm Row":"Sit on the front edge of a chair with a flat back and your chest over your thighs. Pull a dumbbell back past your ribs, squeeze your shoulder blade, then lower.",
+    "Floor Back Extension":"Lie face down, hands by your head or sides. Squeeze your glutes and lift your chest a few inches, pause, then lower. Put a rolled towel under your shins if your feet bother your ankle.",
+    "Prone Y Raise":"Lie face down with your arms overhead in a Y. Squeeze your shoulder blades down and together to lift your arms off the floor, hold a second, then lower. Use a rolled towel under your shins if needed.",
+    "Reverse Crunch":"Lie on your back with your knees bent over your hips. Curl your hips off the floor by pulling your lower belly in, then lower slowly.",
+    "Knee Plank":"Forearms on the floor and knees down (cushion under them), body in a straight line from head to knees, core braced. Hold.",
+    "Seated Hip Hinge":"Sit tall on the front edge of a chair with your feet flat. Hinge forward from your hips with a flat back, then sit back up.",
+    "Shoulder Blade Squeezes":"Sit tall with your arms relaxed and elbows bent to 90°. Squeeze your shoulder blades together and back, hold 2 seconds, then release.",
+    "Lying Knee-to-Chest Stretch":"Lie on your back and hug one knee toward your chest with both hands, the other leg resting flat or bent. Hold, then switch.",
+    "Lying Hip-Flexor Stretch":"Lie on your back near the edge of a bed. Hug one knee to your chest and let the other leg hang off the edge with the knee bent. Hold, then switch.",
+    "Lying Spinal Twist":"Lie on your back with your knees bent. Drop both knees to one side with your arms out wide, keeping both shoulders on the floor. Hold, then switch.",
     "Wall Sit":"Back flat against a wall, slide down until your knees are about 90°, feet flat and shoulder-width. Hold, pressing your back into the wall.",
     "Clamshell":"Lie on your side, knees bent, feet together. Keeping your feet touching, lift your top knee like a clam opening, then lower slowly.",
     "Side-Lying Leg Raise":"Lie on your side with your legs straight. Lift your top leg to about hip height with toes pointing forward, then lower slowly.",
@@ -923,7 +941,6 @@
   // ---- building blocks for the plan ----
   const R  = (n, s)    => ({n, s});              // rep-based move
   const T  = (n, s, t) => ({n, s, t});           // timed move (gets a ⏱ button)
-  const CIRC = n => T(n, "3 rounds × 40s", 40);  // circuit station
   const AB = {n:"Ab Circuit", s:"", nolog:true}; // your ab circuit — on every day
   const STAIRS = {n:"Stair Climbs", s:"3 × 8 (brisk walk)"};
   const day = (day, focus, warmup, main, cooldown, mainNote) => ({day, focus, warmup, main, cooldown, mainNote});
@@ -935,61 +952,58 @@
     R("Half-Kneeling Side Bend","4 × "+reps+"/side")
   ];
 
-  const WU_LOWER = [R("Bodyweight Squat","1 × 10"), R("Glute Bridge","1 × 10"), R("Hip Hinge","1 × 10")];
-  const WU_UPPER = [R("Arm Circles","1 × 10 each dir"), R("Band Pull-Apart","1 × 10"), R("Wall Slide","1 × 10"), R("Light Row","1 × 8/side"), R("Easy Incline Push-Up","1 × 8")];
-  const WU_FULL  = [R("Arm Swings","1 × 10"), R("Cat-Cow","1 × 8"), R("Bodyweight Squat","1 × 10"), R("Hip Hinge","1 × 10")];
-  const WU_POST  = [R("Band Pull-Apart","1 × 10"), R("Hip Hinge","1 × 10"), R("Glute Bridge","1 × 10"), R("Cat-Cow","1 × 8")];
-  const WU_CORE  = [R("Cat-Cow","1 × 8"), R("Arm Circles","1 × 10 each dir"), R("Bodyweight Squat","1 × 10")];
-  const CD_LOWER = [T("Standing Quad Stretch","30s/side",30), T("Standing Hamstring Stretch","30s/side",30), T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Figure-4 Glute Stretch","30s/side",30)];
-  const CD_UPPER = [T("Doorway Chest Stretch","30s/side",30), T("Cross-Body Shoulder Stretch","30s/side",30), T("Overhead Triceps Stretch","30s/side",30), T("Standing Lat Stretch","30s/side",30), T("Wrist/Biceps Stretch","20–30s/side",25)];
-  const CD_FULL  = [T("Child's Pose","30–45 sec",35), T("Standing Quad Stretch","30s/side",30), T("Doorway Chest Stretch","30s/side",30), T("Seated Hamstring Stretch","30s/side",30)];
-  const CD_POST  = [T("Standing Lat Stretch","30s/side",30), T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Figure-4 Glute Stretch","30s/side",30), T("Child's Pose","30–45 sec",35)];
-  const CD_CORE  = [T("Kneeling Hip-Flexor Stretch","30s/side",30), T("Child's Pose","30–45 sec",35)];
+  const WU_GLUTE = [R("Glute Bridge","1 × 15"), R("Clamshell","1 × 10/side"), R("Cat-Cow","1 × 8"), R("Seated Hip Hinge","1 × 10")];
+  const WU_BACK  = [R("Shoulder Blade Squeezes","1 × 10"), R("Band Pull-Apart","1 × 10"), R("Cat-Cow","1 × 8"), R("Arm Circles","1 × 10 each dir")];
+  const WU_QUAD  = [R("Glute Bridge","1 × 12"), R("Seated Hip Hinge","1 × 10"), R("Chair Squat","1 × 8")];
+  const WU_CORE  = [R("Cat-Cow","1 × 8"), R("Dead Bug","1 × 6/side"), R("Glute Bridge","1 × 10")];
+  const CD_GLUTE = [T("Figure-4 Glute Stretch","30s/side",30), T("Lying Hip-Flexor Stretch","30s/side",30), T("Seated Hamstring Stretch","30s/side",30), T("Lying Knee-to-Chest Stretch","30s/side",30)];
+  const CD_BACK  = [T("Doorway Chest Stretch","30s/side",30), T("Cross-Body Shoulder Stretch","30s/side",30), T("Lying Knee-to-Chest Stretch","30s/side",30), T("Lying Spinal Twist","30s/side",30)];
+  const CD_CORE  = [T("Lying Spinal Twist","30s/side",30), T("Lying Knee-to-Chest Stretch","30s/side",30)];
 
-  const CIRCUIT_NOTE = "Circuit format — 40 sec work / 20 sec rest between moves, rest 60 sec between rounds. Tap ⏱ on a move to time it.";
+  const LEG_NOTE = "Standing leg moves: feet flat, knees over toes, and stay pain-free in the ankle — swap with ⇄ if it flares.";
+  const PAIR_NOTE = "Moves are paired in order: 1+2, then 3+4, and so on.";
 
   // WEEK A — Volume
   const WEEK_A = [
-    day("Monday","Lower Body — Quads & Glutes", WU_LOWER, [R("Goblet Squat","3 × 12"), R("Romanian Deadlift","3 × 12"), R("Hip Thrust","3 × 15"), R("Pilates Ball Wall Squat","3 × 12"), R("Clamshell","3 × 15/side"), AB], CD_LOWER),
-    day("Tuesday","Upper Body Push/Pull", WU_UPPER, [R("Dumbbell Chest Press","3 × 12"), R("One-Arm Row","3 × 12/side"), R("Shoulder Press","3 × 12"), R("Biceps Curl","3 × 12"), R("Triceps Extension","3 × 12"), R("Lateral Raise","3 × 15"), STAIRS, AB], CD_UPPER),
-    day("Wednesday","Full-Body Circuit", WU_FULL, [CIRC("Dumbbell Thruster"), CIRC("Renegade Row"), CIRC("Sumo Squat"), CIRC("Band Row"), CIRC("Dead Bug"), AB], CD_FULL, CIRCUIT_NOTE),
-    day("Thursday","Posterior Chain + Back", WU_POST, [R("Dumbbell Deadlift","3 × 12"), R("Bent-Over Row","3 × 12"), R("Single-Leg Glute Bridge","3 × 12/side"), R("Reverse Fly","3 × 15"), R("Bird Dog","3 × 10/side"), T("Superman Hold","3 × 20s",20), AB], CD_POST),
-    day("Friday","Total Body Finisher", WU_FULL, [R("Goblet Squat","3 × 12"), R("Shoulder Press","3 × 12"), R("Pilates Ball Squeeze Bridge","3 × 15"), R("One-Arm Row","3 × 10/side"), T("Plank","3 × 40s",40), AB], CD_FULL),
-    day("Saturday","Low-Impact Strength Mix", WU_FULL, [R("Sumo Squat","3 × 15"), R("Standard Push-Up","3 × 10"), R("Kneeling Single-Arm Row","3 × 12/side"), R("Glute Bridge","3 × 20"), R("Side-Lying Leg Raise","3 × 15/side"), STAIRS, AB], CD_FULL),
+    day("Monday","Glutes & Hamstrings", WU_GLUTE, [R("Hip Thrust","3 × 15"), R("Romanian Deadlift","3 × 12"), R("Frog Pump","3 × 20"), R("Hamstring Slider Curl","3 × 10"), R("Clamshell","3 × 15/side"), AB], CD_GLUTE, LEG_NOTE),
+    day("Tuesday","Back & Core", WU_BACK, [R("Bent-Over Row","3 × 12"), R("Reverse Fly","3 × 15"), R("Band Lat Pulldown","3 × 12"), R("Seated One-Arm Row","3 × 12/side"), R("Floor Back Extension","3 × 10"), R("Dead Bug","3 × 10/side"), STAIRS, AB], CD_BACK),
+    day("Wednesday","Quads & Glutes", WU_QUAD, [R("Goblet Squat","3 × 12"), R("Sumo Squat","3 × 15"), T("Wall Sit","3 × 30s",30), R("Pilates Ball Wall Squat","3 × 12"), R("Banded Glute Bridge","3 × 15"), AB], CD_GLUTE, LEG_NOTE),
+    day("Thursday","Glute Isolation & Back", WU_GLUTE, [R("Donkey Kick","3 × 15/side"), R("Fire Hydrant","3 × 15/side"), R("Side-Lying Leg Raise","3 × 15/side"), R("Band Row","3 × 15"), R("Band Pull-Apart","3 × 15"), R("Prone Y Raise","3 × 10"), AB], CD_BACK),
+    day("Friday","Legs, Glutes & Back", WU_QUAD, [R("Dumbbell Deadlift","3 × 12"), R("Hip Thrust","3 × 12"), R("Goblet Squat","3 × 12"), R("Bent-Over Row","3 × 12"), R("Reverse Fly","3 × 15"), AB], CD_GLUTE, LEG_NOTE),
+    day("Saturday","Glutes & Core", WU_GLUTE, [R("Pilates Ball Squeeze Bridge","3 × 15"), R("Banded Hip Thrust","3 × 15"), R("Clamshell","3 × 20/side"), R("Pilates Ball Knee Squeeze Crunch","3 × 15"), R("Reverse Crunch","3 × 12"), R("Bird Dog","3 × 10/side"), STAIRS, AB], CD_CORE),
     day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(25).concat([AB]), CD_CORE)
   ];
 
   // WEEK B — Strength
   const WEEK_B = [
-    day("Monday","Lower Body — Heavy", WU_LOWER, [R("Goblet Squat","4 × 8"), R("Romanian Deadlift","4 × 8"), R("Hip Thrust","4 × 10"), R("Pilates Ball Heel Squeeze Bridge","3 × 12"), T("Wall Sit","3 × 30s",30), AB], CD_LOWER),
-    day("Tuesday","Upper Body — Heavy", WU_UPPER, [R("Dumbbell Chest Press","4 × 8"), R("Bent-Over Row","4 × 8"), R("Shoulder Press","4 × 8"), R("Hammer Curl","3 × 10"), R("Chest Fly","3 × 10"), AB], CD_UPPER),
-    day("Wednesday","Full-Body Strength", WU_FULL, [R("Dumbbell Thruster","3 × 8"), R("Renegade Row","3 × 6/side"), R("Dumbbell Deadlift","3 × 8"), R("Arnold Press","3 × 8"), R("Pilates Ball Squeeze Press","3 × 10"), STAIRS, AB], CD_FULL),
-    day("Thursday","Posterior Chain — Heavy", WU_POST, [R("Good Morning","4 × 8"), R("Kneeling Single-Arm Row","4 × 8/side"), R("Single-Leg Glute Bridge","3 × 10/side"), R("Reverse Fly","3 × 12"), R("Bird Dog","3 × 8/side"), AB], CD_POST),
-    day("Friday","Total Body Strength", WU_FULL, [R("Pilates Ball Wall Squat","3 × 12"), R("Standard Push-Up","3 × 10"), R("Bent-Over Row","3 × 8"), R("Lateral Raise","3 × 12"), R("Pilates Ball Squeeze Bridge","3 × 12"), T("Plank","3 × 40s",40), AB], CD_FULL),
-    day("Saturday","Low-Impact Strength Mix", WU_FULL, [R("Hip Thrust","3 × 12"), R("Dumbbell Chest Press","3 × 10"), R("One-Arm Row","3 × 10/side"), R("Front Raise","3 × 12"), R("Side-Lying Leg Raise","3 × 12/side"), STAIRS, AB], CD_FULL),
+    day("Monday","Glutes & Hamstrings — Heavy", WU_GLUTE, [R("Hip Thrust","4 × 8"), R("Romanian Deadlift","4 × 8"), R("Frog Pump","3 × 15"), R("Hamstring Slider Curl","3 × 8"), R("Good Morning","3 × 10"), AB], CD_GLUTE, LEG_NOTE),
+    day("Tuesday","Back & Core — Heavy", WU_BACK, [R("Bent-Over Row","4 × 8"), R("Band Lat Pulldown","4 × 10"), R("Seated One-Arm Row","3 × 8/side"), R("Reverse Fly","3 × 12"), R("Floor Back Extension","3 × 12"), R("Dead Bug","3 × 8/side"), STAIRS, AB], CD_BACK),
+    day("Wednesday","Quads & Glutes — Heavy", WU_QUAD, [R("Goblet Squat","4 × 8"), R("Sumo Squat","4 × 10"), T("Wall Sit","3 × 40s",40), R("Banded Glute Bridge","3 × 12"), R("Pilates Ball Wall Squat","3 × 10"), AB], CD_GLUTE, LEG_NOTE),
+    day("Thursday","Glute Isolation & Back", WU_GLUTE, [R("Banded Hip Thrust","4 × 10"), R("Donkey Kick","3 × 12/side"), R("Fire Hydrant","3 × 12/side"), R("Band Row","4 × 10"), R("Prone Y Raise","3 × 10"), R("Band Pull-Apart","3 × 15"), AB], CD_BACK),
+    day("Friday","Legs, Glutes & Back — Heavy", WU_QUAD, [R("Dumbbell Deadlift","4 × 8"), R("Hip Thrust","4 × 8"), R("Goblet Squat","3 × 8"), R("Bent-Over Row","4 × 8"), R("Reverse Fly","3 × 12"), AB], CD_GLUTE, LEG_NOTE),
+    day("Saturday","Glutes & Core", WU_GLUTE, [R("Hip Thrust","3 × 10"), R("Side-Lying Leg Raise","3 × 12/side"), R("Pilates Ball Squeeze Bridge","3 × 12"), R("Reverse Crunch","3 × 12"), R("Knee Plank","3 × 30s"), R("Bird Dog","3 × 8/side"), STAIRS, AB], CD_CORE),
     day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(20).concat([AB]), CD_CORE)
   ];
 
-  // WEEK C — Circuit
+  // WEEK C — Tempo & Pause (lower slowly for 3 sec, squeeze 2 sec at the top)
   const WEEK_C = [
-    day("Monday","Lower Body Circuit", WU_LOWER, [CIRC("Goblet Squat"), CIRC("Glute Bridge"), CIRC("Romanian Deadlift"), CIRC("Pilates Ball Wall Squat"), CIRC("Clamshell"), AB], CD_LOWER, CIRCUIT_NOTE),
-    day("Tuesday","Upper Body Circuit", WU_UPPER, [CIRC("Dumbbell Chest Press"), CIRC("Bent-Over Row"), CIRC("Arnold Press"), CIRC("Hammer Curl"), CIRC("Front Raise"), STAIRS, AB], CD_UPPER, CIRCUIT_NOTE),
-    day("Wednesday","Full-Body Circuit", WU_FULL, [CIRC("Dumbbell Thruster"), CIRC("Renegade Row"), CIRC("Sumo Squat"), CIRC("Band Row"), CIRC("Pilates Ball Push-Up"), AB], CD_FULL, CIRCUIT_NOTE),
-    day("Thursday","Posterior Chain Circuit", WU_POST, [CIRC("Dumbbell Deadlift"), CIRC("Kneeling Single-Arm Row"), CIRC("Pilates Ball Squeeze Bridge"), CIRC("Reverse Fly"), CIRC("Superman Hold"), AB], CD_POST, CIRCUIT_NOTE),
-    day("Friday","Total Body Circuit", WU_FULL, [CIRC("Goblet Squat"), CIRC("Standard Push-Up"), CIRC("One-Arm Row"), CIRC("Hip Thrust"), CIRC("Pilates Ball Plank"), STAIRS, AB], CD_FULL, CIRCUIT_NOTE),
-    day("Saturday","Ball + Band Circuit", WU_FULL, [CIRC("Pilates Ball Squeeze Bridge"), CIRC("Pilates Ball Squeeze Press"), CIRC("Band Row"), CIRC("Wall Sit"), CIRC("Pilates Ball Russian Twist"), AB], CD_FULL, CIRCUIT_NOTE),
+    day("Monday","Glutes & Hamstrings — Tempo", WU_GLUTE, [R("Hip Thrust","3 × 10"), R("Romanian Deadlift","3 × 10"), R("Banded Glute Bridge","3 × 15"), R("Hamstring Slider Curl","3 × 8"), R("Frog Pump","3 × 20"), AB], CD_GLUTE, LEG_NOTE),
+    day("Tuesday","Back & Core — Tempo", WU_BACK, [R("Bent-Over Row","3 × 10"), R("Seated One-Arm Row","3 × 10/side"), R("Band Lat Pulldown","3 × 12"), R("Reverse Fly","3 × 12"), R("Prone Y Raise","3 × 10"), R("Dead Bug","3 × 10/side"), STAIRS, AB], CD_BACK),
+    day("Wednesday","Quads & Glutes — Tempo", WU_QUAD, [R("Goblet Squat","3 × 10"), R("Sumo Squat","3 × 12"), T("Wall Sit","3 × 45s",45), R("Pilates Ball Wall Squat","3 × 12"), R("Hip Thrust","3 × 12"), AB], CD_GLUTE, LEG_NOTE),
+    day("Thursday","Glute Isolation & Back", WU_GLUTE, [R("Donkey Kick","3 × 15/side"), R("Fire Hydrant","3 × 15/side"), R("Clamshell","3 × 20/side"), R("Band Row","3 × 12"), R("Band Pull-Apart","3 × 15"), R("Floor Back Extension","3 × 12"), AB], CD_BACK),
+    day("Friday","Legs, Glutes & Back — Tempo", WU_QUAD, [R("Dumbbell Deadlift","3 × 10"), R("Banded Hip Thrust","3 × 12"), R("Goblet Squat","3 × 10"), R("Bent-Over Row","3 × 10"), R("Band Lat Pulldown","3 × 12"), AB], CD_GLUTE, LEG_NOTE),
+    day("Saturday","Glutes & Core", WU_GLUTE, [R("Pilates Ball Heel Squeeze Bridge","3 × 15"), R("Side-Lying Leg Raise","3 × 15/side"), R("Pilates Ball Knee Squeeze Crunch","3 × 12"), R("Reverse Crunch","3 × 12"), R("Bird Dog","3 × 10/side"), STAIRS, AB], CD_CORE),
     day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(25).concat([AB]), CD_CORE)
   ];
 
   // WEEK D — Superset Burnout (moves are listed in pairs: 1+2, 3+4, 5+6…)
-  const PAIR_NOTE = "Moves are paired in order: 1+2, then 3+4, and so on.";
   const WEEK_D = [
-    day("Monday","Lower Body Burnout", WU_LOWER, [R("Goblet Squat","3 × 15"), R("Romanian Deadlift","3 × 15"), R("Hip Thrust","3 × 20"), R("Pilates Ball Wall Squat","3 × 15"), R("Clamshell","3 × 20/side"), STAIRS, AB], CD_LOWER, PAIR_NOTE),
-    day("Tuesday","Upper Body Burnout", WU_UPPER, [R("Standard Push-Up","3 × 15"), R("Bent-Over Row","3 × 15"), R("Arnold Press","3 × 12"), R("One-Arm Row","3 × 12/side"), R("Biceps Curl","3 × 15"), R("Triceps Extension","3 × 15"), AB], CD_UPPER, PAIR_NOTE),
-    day("Wednesday","Full-Body Burnout", WU_FULL, [R("Dumbbell Thruster","3 × 15"), R("Renegade Row","3 × 10/side"), R("Sumo Squat","3 × 20"), R("Band Row","3 × 15"), R("Pilates Ball Push-Up","3 × 12"), AB], CD_FULL, PAIR_NOTE),
-    day("Thursday","Posterior Chain Burnout", WU_POST, [R("Dumbbell Deadlift","3 × 15"), R("Reverse Fly","3 × 15"), R("Single-Leg Glute Bridge","3 × 15/side"), R("Pilates Ball Heel Squeeze Bridge","3 × 15"), T("Superman Hold","3 × 30s",30), AB], CD_POST, PAIR_NOTE),
-    day("Friday","Total Body Burnout", WU_FULL, [R("Goblet Squat","3 × 15"), R("Shoulder Press","3 × 15"), R("Hip Thrust","3 × 20"), R("Kneeling Single-Arm Row","3 × 12/side"), T("Side Plank","3 × 30s/side",30), STAIRS, AB], CD_FULL, PAIR_NOTE),
-    day("Saturday","Low-Impact Burnout", WU_FULL, [R("Chest Fly","3 × 15"), R("Lateral Raise","3 × 15"), R("Glute Bridge","3 × 25"), R("Side-Lying Leg Raise","3 × 20/side"), R("Pilates Ball Russian Twist","3 × 20"), AB], CD_FULL, PAIR_NOTE),
+    day("Monday","Glutes & Hamstrings — Burnout", WU_GLUTE, [R("Hip Thrust","3 × 15"), R("Romanian Deadlift","3 × 15"), R("Frog Pump","3 × 25"), R("Hamstring Slider Curl","3 × 12"), R("Clamshell","3 × 20/side"), R("Banded Glute Bridge","3 × 20"), AB], CD_GLUTE, LEG_NOTE + " " + PAIR_NOTE),
+    day("Tuesday","Back & Core — Burnout", WU_BACK, [R("Bent-Over Row","3 × 15"), R("Reverse Fly","3 × 15"), R("Band Lat Pulldown","3 × 15"), R("Seated One-Arm Row","3 × 12/side"), R("Floor Back Extension","3 × 15"), R("Dead Bug","3 × 12/side"), STAIRS, AB], CD_BACK, PAIR_NOTE),
+    day("Wednesday","Quads & Glutes — Burnout", WU_QUAD, [R("Goblet Squat","3 × 15"), R("Sumo Squat","3 × 20"), T("Wall Sit","3 × 45s",45), R("Pilates Ball Wall Squat","3 × 15"), R("Hip Thrust","3 × 20"), R("Banded Glute Bridge","3 × 20"), AB], CD_GLUTE, LEG_NOTE + " " + PAIR_NOTE),
+    day("Thursday","Glute Isolation & Back", WU_GLUTE, [R("Donkey Kick","3 × 20/side"), R("Fire Hydrant","3 × 20/side"), R("Side-Lying Leg Raise","3 × 20/side"), R("Clamshell","3 × 25/side"), R("Band Row","3 × 15"), R("Prone Y Raise","3 × 12"), AB], CD_BACK, PAIR_NOTE),
+    day("Friday","Legs, Glutes & Back — Burnout", WU_QUAD, [R("Dumbbell Deadlift","3 × 15"), R("Bent-Over Row","3 × 15"), R("Hip Thrust","3 × 15"), R("Reverse Fly","3 × 15"), R("Goblet Squat","3 × 15"), R("Band Lat Pulldown","3 × 15"), AB], CD_GLUTE, LEG_NOTE + " " + PAIR_NOTE),
+    day("Saturday","Glutes & Core — Burnout", WU_GLUTE, [R("Pilates Ball Squeeze Bridge","3 × 20"), R("Pilates Ball Knee Squeeze Crunch","3 × 15"), R("Reverse Crunch","3 × 15"), R("Bird Dog","3 × 12/side"), R("Side-Lying Leg Raise","3 × 20/side"), R("Knee Plank","3 × 30s"), STAIRS, AB], CD_CORE, PAIR_NOTE),
     day("Sunday","Kneeling Core Circuit", WU_CORE, KNEEL(30).concat([AB]), CD_CORE)
   ];
 
@@ -1000,13 +1014,14 @@
   // can swap for any other in that pool.
   const SUB_POOLS = [
     ["Bodyweight Squat","Goblet Squat","Sumo Squat","Step-Up","Reverse Lunge","Split Squat","Pilates Ball Wall Squat","Wall Sit"],
-    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge","Single-Leg Deadlift","Pilates Ball Squeeze Bridge","Pilates Ball Heel Squeeze Bridge","Good Morning"],
+    ["Hip Hinge","Romanian Deadlift","Dumbbell Deadlift","Hip Thrust","Glute Bridge","Single-Leg Glute Bridge","Single-Leg Deadlift","Pilates Ball Squeeze Bridge","Pilates Ball Heel Squeeze Bridge","Good Morning","Frog Pump","Banded Hip Thrust","Banded Glute Bridge","Hamstring Slider Curl"],
     ["Easy Incline Push-Up","Dumbbell Chest Press","Shoulder Press","Dumbbell Thruster","Standard Push-Up","Arnold Press","Pilates Ball Push-Up","Pilates Ball Squeeze Press","Chest Fly"],
-    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row","Kneeling Single-Arm Row","Reverse Fly"],
+    ["Light Row","One-Arm Row","Bent-Over Row","Band Row","Renegade Row","Kneeling Single-Arm Row","Reverse Fly","Band Lat Pulldown","Seated One-Arm Row"],
     ["Biceps Curl","Lateral Raise","Hammer Curl","Front Raise","Triceps Extension"],
-    ["Clamshell","Side-Lying Leg Raise"],
-    ["Slider Knee Tuck","Dead Bug","Crunch","Bird Dog","Pilates Ball Knee Squeeze Crunch","Pilates Ball Russian Twist"],
-    ["Plank","Superman Hold","Pilates Ball Plank","Side Plank"],
+    ["Clamshell","Side-Lying Leg Raise","Donkey Kick","Fire Hydrant"],
+    ["Floor Back Extension","Prone Y Raise","Superman Hold"],
+    ["Slider Knee Tuck","Dead Bug","Crunch","Bird Dog","Pilates Ball Knee Squeeze Crunch","Pilates Ball Russian Twist","Reverse Crunch"],
+    ["Plank","Knee Plank","Superman Hold","Pilates Ball Plank","Side Plank"],
     ["Reverse Lunge","Reverse Lunge to Knee Drive","Step-Up","Curtsy Lunge","Lateral Lunge"],
     ["Jumping Jacks or Marches","Mountain Climbers","Inchworm","High Knees","Butt Kicks"]
   ];
@@ -1028,22 +1043,22 @@
     {t:"Progressive overload", b:"Every week or two, add a rep, a round, or a slightly heavier dumbbell to a lift that's felt easy for two sessions in a row."},
     {t:"Protein at each meal", b:"Aim for a palm-sized portion at breakfast, lunch, and dinner — it protects muscle while you're in a calorie deficit."},
     {t:"Sleep is training too", b:"7+ hours is when the toning actually happens. Short sleep makes every session feel harder than it is."},
-    {t:"Recovery still counts", b:"Your weekend sessions are lighter (core + stairs) on purpose — that's intentional recovery from the heavier lifting days, not a day to push harder."},
+    {t:"Recovery still counts", b:"Sunday is lighter on purpose — core and mobility, not another hard leg day. Glutes grow while you rest."},
     {t:"Log it or lose it", b:"Checking off exercises here isn't busywork — the streak is what tells you the plan is actually happening."}
   ];
 
   const TIPS = [
-    "Toning is just muscle plus a lower body-fat percentage — you don't need a different rep range for 'tone' vs 'strength,' you need consistency at both.",
-    "If a superset day (Friday) leaves you gassed, that's the point — pairing exercises keeps your heart rate up without adding total time.",
-    "Circuit days like Wednesday burn more calories per minute than straight sets, but straight-set days like Monday build more strength. You need both.",
-    "Struggling with reverse lunges? Hold onto a wall or chair with one hand until your balance catches up — same muscles, less wobble.",
-    "Water first, coffee second. A lot of afternoon 'hunger' is actually mild dehydration.",
-    "If you miss a day, don't try to do two workouts in one — just pick the plan back up on the next scheduled day."
+    "Glutes grow from controlled reps. Squeeze at the top of every hip thrust and bridge for a full second.",
+    "Lifting builds the shape of your legs and glutes; your food decides how visible it is. You need both.",
+    "On back days, think \"elbows to back pockets\" so your shoulders and arms don't take over.",
+    "If a week feels easy, add weight before adding reps.",
+    "Keep your knees tracking over your toes on every squat and bridge, especially with an inward-leaning ankle.",
+    "If your ankle feels worse the next morning, swap the standing moves for lying or seated ones that day."
   ];
 
   // ---------------- STATE / STORAGE ----------------
   const STORE_KEY = "rungs-progress-v1";
-  const OVERRIDE_KEY = "rungs-overrides-v1";
+  const OVERRIDE_KEY = "rungs-overrides-v2";
   const CUSTOM_KEY = "rungs-custom-exercises-v1";
 
   function loadStore(){
@@ -1104,7 +1119,7 @@
   const WEEK_STYLES = [
     { name:"Volume",           repsDelta:0,  weightBump:2.5, note:"Volume week — moderate reps, standard rest (60–90 sec) between sets." },
     { name:"Strength",         repsDelta:-2, weightBump:5,   note:"Strength week — go heavier and drop reps a bit if you need to; rest longer between sets (90–120 sec)." },
-    { name:"Circuit",          repsDelta:0,  weightBump:2.5, note:"Circuit week — minimal rest between moves; rest only after a full round through everything." },
+    { name:"Tempo & Pause",   repsDelta:0,  weightBump:2.5, note:"Tempo week — lower slowly for 3 seconds and squeeze for 2 seconds at the top of every rep; rest 60–90 sec." },
     { name:"Superset Burnout", repsDelta:2,  weightBump:0,   note:"Burnout week — pair each move with the next one, no rest between the pair, then rest before the next pair." }
   ];
   const currentWeekStyle = WEEK_STYLES[currentWeekIdx];
